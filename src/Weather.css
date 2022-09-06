@@ -1,0 +1,7 @@
+.forecast-day {
+  border: 1px solid #dadde1;
+  background-color: #fff;
+  border-radius: 5px;
+  max-width: 160px;
+  margin: 12px 30px;
+}
