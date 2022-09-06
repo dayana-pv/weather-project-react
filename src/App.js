@@ -48,7 +48,7 @@ function App() {
           </div>
           <small>
             <a
-              href="https://github.com/dayana-pv/weather-project"
+              href="https://github.com/dayana-pv/weather-project-react"
               target="_blank"
               rel="noreferrer"
             >
