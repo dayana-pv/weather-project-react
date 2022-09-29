@@ -27,7 +27,12 @@ hr {
 
 .weather-app-wrapper {
   max-width: 850px;
-  margin: 70px auto;
+  margin: 70px auto 5px;
+}
+
+footer {
+  max-width: 850px;
+  margin: 0px auto;
 }
 
 .weather-app {
