@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import WeatherInfo from "./WeatherInfo";
-import WeatherDay from "./WeatherDay";
+import WeatherForecast from "./WeatherForecast";
 import axios from "axios";
 
 import "./Weather.css";
@@ -13,6 +13,7 @@ export default function Weather(props) {
     console.log(response.data);
     setweatherData({
       ready: true,
+      coordinates: response.data.coord,
       temperature: Math.round(response.data.main.temp),
       humidity: response.data.main.humidity,
       date: new Date(response.data.dt * 1000),
@@ -24,7 +25,7 @@ export default function Weather(props) {
   }
 
   function search() {
-    const apiKey = "61a4dbc4a1dd547ee28f70609a99874b";
+    let apiKey = "1affa5bc7832c77e10fd88474a137ac1";
     let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
     axios.get(apiUrl).then(handleResponse);
   }
@@ -40,72 +41,53 @@ export default function Weather(props) {
 
   if (weatherData.ready) {
     return (
-      <div class="weather-app-wrapper">
-        <div class="weather-app">
-          <div class="row">
-            <div
-              class="col-4 weather-information
+      <div className="Weather">
+        <div class="weather-app-wrapper">
+          <div class="weather-app">
+            <div class="row">
+              <div
+                class="col-4 weather-information
               "
-            >
-              <WeatherInfo data={weatherData} />
-            </div>
-            <div class="col-8 city-form">
-              <form class="m-2">
-                <div class="row">
-                  <div class="col-7">
-                    <input
-                      type="search"
-                      class="form-control"
-                      placeholder="Type a city.."
-                      id="city-input"
-                      autocomplete="off"
-                      onChange={handleCityChange}
-                    />
+              >
+                <WeatherInfo data={weatherData} />
+              </div>
+              <div class="col-8 city-form">
+                <form class="m-2">
+                  <div class="row">
+                    <div class="col-7">
+                      <input
+                        type="search"
+                        class="form-control"
+                        placeholder="Type a city.."
+                        id="city-input"
+                        autocomplete="off"
+                        onChange={handleCityChange}
+                      />
+                    </div>
+                    <div class="col-2">
+                      <button
+                        type="submit"
+                        class="btn mb-3 mx-1 button-style"
+                        id="search"
+                        onClick={handleSubmit}
+                      >
+                        Search
+                      </button>
+                    </div>
+                    <div class="col-2">
+                      <button
+                        type="submit"
+                        class="btn mb-3 mx-1 button-style"
+                        id="current"
+                      >
+                        Current
+                      </button>
+                    </div>
                   </div>
-                  <div class="col-2">
-                    <button
-                      type="submit"
-                      class="btn mb-3 mx-1 button-style"
-                      id="search"
-                      onClick={handleSubmit}
-                    >
-                      Search
-                    </button>
-                  </div>
-                  <div class="col-2">
-                    <button
-                      type="submit"
-                      class="btn mb-3 mx-1 button-style"
-                      id="current"
-                    >
-                      Current
-                    </button>
-                  </div>
-                </div>
-              </form>
-              <hr />
-              <div class="weather-forecast" id="forecast">
-                <div class="row">
-                  <div class="col-3 mx-3">
-                    <WeatherDay data={weatherData} />
-                  </div>
-                  <div class="col-3 mx-3">
-                    <WeatherDay data={weatherData} />
-                  </div>
-                  <div class="col-3 mx-3">
-                    <WeatherDay data={weatherData} />
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-3 mx-3">
-                    <WeatherDay data={weatherData} />
-                  </div>
-                  <div class="col-3 mx-3">
-                    <WeatherDay data={weatherData} />
-                  </div>
-                  <div class="col-3 mx-3">
-                    <WeatherDay data={weatherData} />
-                  </div>
+                </form>
+                <hr />
+                <div className="weather-forecast">
+                  <WeatherForecast coordinates={weatherData.coordinates} />
                 </div>
               </div>
             </div>

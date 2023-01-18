@@ -48,3 +48,7 @@ li {
 .button-style {
   background: #13ade9;
 }
+
+.weather-forecast {
+  margin: 0px 35px 0px 0px;
+}

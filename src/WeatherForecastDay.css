@@ -1,0 +1,33 @@
+.forecast-day {
+  border: 1px solid #dadde1;
+  background-color: #fff;
+  border-radius: 5px;
+  max-width: 160px;
+  margin: 15px 0px;
+}
+
+.weather-forecast-date {
+  font-size: 20px;
+  text-align: center;
+  margin: 0px 0px 4px;
+}
+
+.weather-forecast-temperatures {
+  font-size: 17px;
+  text-align: center;
+  margin: 0px 0px 7px;
+}
+
+.weather-forecast-temperature-min {
+  opacity: 0.7;
+}
+
+.weather-forecast-icon {
+  margin: 5px 20px;
+}
+
+canvas {
+  margin: 5px 10px;
+  padding: 20;
+  display: inline-block;
+}

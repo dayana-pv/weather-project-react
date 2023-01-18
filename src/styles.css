@@ -68,23 +68,3 @@ footer {
 .city-form {
   margin: 15px auto;
 }
-
-.weather-forecast {
-  margin: 0px 0px 0px 20px;
-}
-
-.weather-forecast-date {
-  font-size: 20px;
-  text-align: center;
-  margin: 0px 0px 4px;
-}
-
-.weather-forecast-temperatures {
-  font-size: 17px;
-  text-align: center;
-  margin: 0px 0px 7px;
-}
-
-.weather-forecast-temperature-min {
-  opacity: 0.7;
-}
