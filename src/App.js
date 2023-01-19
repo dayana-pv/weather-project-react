@@ -4,7 +4,7 @@ import "./styles.css";
 function App() {
   return (
     <div className="styles">
-      <div class="container">
+      <div className="container">
         <Weather defaultCity="New york" />
 
         <footer>

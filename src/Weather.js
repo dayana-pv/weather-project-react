@@ -10,11 +10,10 @@ export default function Weather(props) {
   const [city, setCity] = useState(props.defaultCity);
 
   function handleResponse(response) {
-    console.log(response.data);
     setweatherData({
       ready: true,
       coordinates: response.data.coord,
-      temperature: Math.round(response.data.main.temp),
+      temperature: response.data.main.temp,
       humidity: response.data.main.humidity,
       date: new Date(response.data.dt * 1000),
       description: response.data.weather[0].description,
@@ -30,9 +29,22 @@ export default function Weather(props) {
     axios.get(apiUrl).then(handleResponse);
   }
 
+  function showPosition(position) {
+    let apiKey = "1affa5bc7832c77e10fd88474a137ac1";
+    let latitude = position.coords.latitude;
+    let longitude = position.coords.longitude;
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;
+    axios.get(apiUrl).then(handleResponse);
+  }
+
   function handleSubmit(event) {
     event.preventDefault();
     search();
+  }
+
+  function currentPosition(event) {
+    event.preventDefault();
+    navigator.geolocation.getCurrentPosition(showPosition);
   }
 
   function handleCityChange(event) {
@@ -42,43 +54,43 @@ export default function Weather(props) {
   if (weatherData.ready) {
     return (
       <div className="Weather">
-        <div class="weather-app-wrapper">
-          <div class="weather-app">
-            <div class="row">
+        <div className="weather-app-wrapper">
+          <div className="weather-app">
+            <div className="row">
               <div
-                class="col-4 weather-information
+                className="col-4 weather-information
               "
               >
                 <WeatherInfo data={weatherData} />
               </div>
-              <div class="col-8 city-form">
-                <form class="m-2">
-                  <div class="row">
-                    <div class="col-7">
+              <div className="col-8 city-form">
+                <form className="m-2">
+                  <div className="row">
+                    <div className="col-7">
                       <input
                         type="search"
-                        class="form-control"
+                        className="form-control"
                         placeholder="Type a city.."
                         id="city-input"
-                        autocomplete="off"
                         onChange={handleCityChange}
                       />
                     </div>
-                    <div class="col-2">
+                    <div className="col-2">
                       <button
                         type="submit"
-                        class="btn mb-3 mx-1 button-style"
+                        className="btn mb-3 mx-1 button-style"
                         id="search"
                         onClick={handleSubmit}
                       >
                         Search
                       </button>
                     </div>
-                    <div class="col-2">
+                    <div className="col-2">
                       <button
                         type="submit"
-                        class="btn mb-3 mx-1 button-style"
+                        className="btn mb-3 mx-1 button-style"
                         id="current"
+                        onClick={currentPosition}
                       >
                         Current
                       </button>
